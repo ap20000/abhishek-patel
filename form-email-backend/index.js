@@ -7,9 +7,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Serve static files from the root directory (CSS, JS, Images, etc.)
+app.use(express.static(path.join(__dirname, '..')));
+
 // Serve the static HTML file
-app.get( (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Route to handle the form submission
